@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Birthday Surprise</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<audio id="birthdayMusic" loop>
+    <source src="birthday.mp3" type="audio/mpeg">
+</audio>
+
+<button id="musicButton" class="music-button">
+    🎵 Music
+</button>
+
+    <!-- =====================================
+         OPENING SCREEN
+    ====================================== -->
+
+    <section id="intro" class="intro">
+
+        <div class="curtain curtain-top"></div>
+        <div class="curtain curtain-bottom"></div>
+
+        <div class="intro-content">
+
+            <div class="big-gift">🎁</div>
+
+            <h1>A Little Birthday Surprise</h1>
+
+            <p>
+                Something special is waiting for you...
+            </p>
+
+            <button id="openGift">
+                Open the Gift ✨
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================
+         BIRTHDAY PAGE
+    ====================================== -->
+
+    <section id="birthdayPage" class="birthday-page">
+
+        <div id="balloons"></div>
+
+        <!-- BIRTHDAY CARD -->
+
+        <div class="birthday-card">
+
+            <div class="cake-container" id="cake">
+
+                <div class="cake">
+
+                    <div class="cake-top"></div>
+
+                    <div class="cake-body">
+
+                        <div class="icing"></div>
+
+                        <div class="cake-decoration decoration-1"></div>
+                        <div class="cake-decoration decoration-2"></div>
+                        <div class="cake-decoration decoration-3"></div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CANDLES -->
+
+                <div class="candles">
+
+                    <div class="candle">
+                        <div class="flame"></div>
+                    </div>
+
+                    <div class="candle">
+                        <div class="flame"></div>
+                    </div>
+
+                    <div class="candle">
+                        <div class="flame"></div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <h1 id="birthdayTitle"></h1>
+
+           <p class="birthday-poem">
+
+              <span>If I could gather all the stars in the sky,</span>
+
+              <span>I'd place them gently in your hands,</span>
+
+              <span>For you deserve a universe filled with wonder.</span>
+
+              <span>If I could capture every beautiful melody,</span>
+
+              <span>I'd compose a song that speaks of my love for you.</span>
+
+              <span>Today, I simply wish you joy, peace, and endless love.</span>
+
+              <span>Happy Birthday to the one who makes my heart feel at home. ❤️✨</span>
+
+           </p>
+
+
+            <button id="surpriseButton">
+                One More Surprise ✨
+            </button>
+
+
+            <div id="surpriseMessage" class="surprise-message">
+
+                <h2>🎉 Surprise! 🎉</h2>
+
+                <p>
+                    May your birthday be filled with happiness,
+                    laughter, and beautiful memories. ❤️
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================
+             HEART TREE
+        ====================================== -->
+
+        <div class="tree-area">
+
+            <div class="tree-glow"></div>
+
+            <div class="tree">
+
+                <div class="trunk"></div>
+
+                <div class="branch branch-1"></div>
+                <div class="branch branch-2"></div>
+                <div class="branch branch-3"></div>
+                <div class="branch branch-4"></div>
+                <div class="branch branch-5"></div>
+                <div class="branch branch-6"></div>
+                <div class="branch branch-7"></div>
+
+            </div>
+
+            <div id="heartLeaves"></div>
+
+            <div class="tree-heart">
+                ♥
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
