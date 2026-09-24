@@ -1081,3 +1081,930 @@ button:hover {
 .music-button:hover {
     background: #ef5d91;
 }
+/* =====================================
+   MEMORIES / PHOTO GALLERY
+====================================== */
+
+.memories-section {
+    position: relative;
+    padding: 90px 30px;
+    background: #3b1022;
+    color: white;
+    text-align: center;
+    overflow: hidden;
+}
+
+.memories-title {
+    max-width: 700px;
+    margin: 0 auto 50px;
+}
+
+.memories-small-title {
+    font-size: 13px !important;
+    letter-spacing: 4px;
+    color: #f5a8c2;
+    margin-bottom: 12px !important;
+}
+
+.memories-title h2 {
+    margin: 0 0 15px;
+    font-size: 50px;
+}
+
+.memories-title > p:last-child {
+    color: #f5d8e3;
+    font-size: 18px !important;
+}
+
+/* Gallery */
+
+.memory-gallery {
+    width: min(1100px, 100%);
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+.memory-card {
+    position: relative;
+    height: 360px;
+    border-radius: 25px;
+    overflow: hidden;
+
+    background: #1a0610;
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.25);
+
+    cursor: pointer;
+
+    transform: translateY(0);
+    transition:
+        transform 0.4s ease,
+        box-shadow 0.4s ease;
+}
+
+.memory-card:hover {
+    transform: translateY(-10px);
+    box-shadow:
+        0 25px 50px rgba(0, 0, 0, 0.35);
+}
+
+.memory-card img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition:
+        transform 0.6s ease;
+}
+
+.memory-card:hover img {
+    transform: scale(1.08);
+}
+
+/* Dark overlay */
+
+.memory-overlay {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    padding: 35px 20px 22px;
+
+    background: linear-gradient(
+        transparent,
+        rgba(0, 0, 0, 0.75)
+    );
+
+    color: white;
+
+    transform: translateY(10px);
+    opacity: 0;
+
+    transition:
+        opacity 0.4s ease,
+        transform 0.4s ease;
+}
+
+.memory-card:hover .memory-overlay {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.memory-overlay span {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+
+/* =====================================
+   MOBILE MEMORIES
+====================================== */
+
+@media (max-width: 700px) {
+
+    .memories-section {
+        padding: 70px 18px;
+    }
+
+    .memories-title h2 {
+        font-size: 38px;
+    }
+
+    .memory-gallery {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .memory-card {
+        height: 400px;
+    }
+
+    .memory-overlay {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* =====================================
+   FULL SCREEN PHOTO VIEWER
+====================================== */
+
+.photo-viewer {
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.92);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity 0.35s ease,
+        visibility 0.35s ease;
+
+    z-index: 9999;
+}
+
+.photo-viewer.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.photo-viewer img {
+    max-width: 90%;
+    max-height: 85vh;
+
+    object-fit: contain;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 20px 70px rgba(0, 0, 0, 0.6);
+
+    transform: scale(0.85);
+
+    transition:
+        transform 0.4s ease;
+}
+
+.photo-viewer.active img {
+    transform: scale(1);
+}
+
+.close-photo {
+    position: absolute;
+
+    top: 25px;
+    right: 30px;
+
+    width: 50px;
+    height: 50px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.15);
+
+    color: white;
+
+    font-size: 25px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.3s ease,
+        transform 0.3s ease;
+}
+
+.close-photo:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
+}
+
+@media (max-width: 700px) {
+
+    .photo-viewer {
+        padding: 15px;
+    }
+
+    .photo-viewer img {
+        max-width: 96%;
+        max-height: 80vh;
+    }
+
+    .close-photo {
+        top: 15px;
+        right: 15px;
+    }
+}
+/* =====================================
+   FIREWORKS
+====================================== */
+
+#fireworks {
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 50;
+
+    overflow: hidden;
+}
+
+.firework {
+    position: absolute;
+
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: white;
+
+    box-shadow:
+        0 0 8px white,
+        0 0 18px white;
+
+    animation: fireworkBurst 1.4s ease-out forwards;
+}
+
+.firework::before,
+.firework::after {
+    content: "";
+
+    position: absolute;
+
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: inherit;
+}
+
+.firework::before {
+    transform: translate(35px, -35px);
+}
+
+.firework::after {
+    transform: translate(-35px, 35px);
+}
+
+@keyframes fireworkBurst {
+
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+
+    30% {
+        transform: scale(1.5);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(7);
+        opacity: 0;
+    }
+
+}
+/* =====================================
+   FLOATING HEARTS
+====================================== */
+
+#floatingHearts {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 45;
+}
+
+.floating-heart {
+    position: absolute;
+    bottom: -40px;
+
+    color: #ff6f9f;
+    font-size: 20px;
+
+    opacity: 0;
+
+    animation: floatHeart linear forwards;
+    filter: drop-shadow(0 0 8px rgba(255, 111, 159, 0.7));
+}
+
+@keyframes floatHeart {
+
+    0% {
+        transform: translateY(0) rotate(0deg) scale(0.7);
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 0.9;
+    }
+
+    50% {
+        transform: translateY(-50vh) rotate(20deg) scale(1);
+    }
+
+    100% {
+        transform: translateY(-115vh) rotate(-20deg) scale(0.8);
+        opacity: 0;
+    }
+
+}
+/* =====================================
+   PERSONALIZED OPENING
+====================================== */
+
+.recipient-name {
+    margin-top: -5px;
+    margin-bottom: 25px;
+
+    font-size: 20px !important;
+    font-weight: 600;
+
+    color: #ffd1df;
+
+    letter-spacing: 1px;
+
+    animation: nameGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes nameGlow {
+
+    from {
+        text-shadow: 0 0 5px rgba(255, 180, 205, 0.3);
+    }
+
+    to {
+        text-shadow:
+            0 0 10px rgba(255, 180, 205, 0.8),
+            0 0 20px rgba(255, 180, 205, 0.4);
+    }
+
+}
+/* =========================================
+   🌌 GALAXY BIRTHDAY WORLD
+========================================= */
+
+.birthday-page {
+    position: relative;
+
+    min-height: 100vh;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 75% 20%,
+            rgba(84, 36, 180, 0.55),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 20% 65%,
+            rgba(180, 30, 120, 0.45),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 50% 90%,
+            rgba(20, 80, 180, 0.35),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #02010d 0%,
+            #09002b 35%,
+            #180044 65%,
+            #03010f 100%
+        );
+
+    color: white;
+}
+
+
+/* =========================================
+   GALAXY BACKGROUND
+========================================= */
+
+.galaxy-background {
+    position: absolute;
+
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    z-index: 0;
+}
+
+
+/* Nebula clouds */
+
+.galaxy-nebula {
+    position: absolute;
+
+    border-radius: 50%;
+
+    filter: blur(70px);
+
+    opacity: 0.45;
+
+    animation: nebulaFloat 12s ease-in-out infinite alternate;
+}
+
+.nebula-one {
+    width: 550px;
+    height: 300px;
+
+    top: 5%;
+    left: -10%;
+
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(255, 30, 170, 0.7),
+            transparent 70%
+        );
+
+    transform: rotate(-25deg);
+}
+
+.nebula-two {
+    width: 600px;
+    height: 350px;
+
+    top: 10%;
+    right: -15%;
+
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(40, 110, 255, 0.7),
+            transparent 70%
+        );
+
+    transform: rotate(25deg);
+
+    animation-delay: 2s;
+}
+
+.nebula-three {
+    width: 700px;
+    height: 300px;
+
+    bottom: 0;
+    left: 25%;
+
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(190, 20, 130, 0.55),
+            transparent 70%
+        );
+
+    animation-delay: 4s;
+}
+
+@keyframes nebulaFloat {
+
+    from {
+        transform: scale(1) rotate(-10deg);
+    }
+
+    to {
+        transform: scale(1.15) rotate(10deg);
+    }
+
+}
+
+
+/* =========================================
+   STARS
+========================================= */
+
+.galaxy-stars {
+    position: absolute;
+
+    inset: 0;
+
+    background-image:
+        radial-gradient(circle, white 1px, transparent 1px),
+        radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px),
+        radial-gradient(circle, rgba(255,180,240,0.9) 1px, transparent 1px);
+
+    background-size:
+        90px 90px,
+        150px 150px,
+        220px 220px;
+
+    background-position:
+        10px 20px,
+        50px 80px,
+        120px 30px;
+
+    opacity: 0.65;
+
+    animation: starsMove 20s linear infinite;
+}
+
+@keyframes starsMove {
+
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-90px);
+    }
+
+}
+
+
+/* =========================================
+   SHOOTING STARS
+========================================= */
+
+.shooting-star {
+    position: absolute;
+
+    width: 140px;
+    height: 2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            white
+        );
+
+    opacity: 0;
+
+    transform: rotate(-35deg);
+
+    animation: shootingStar 5s linear infinite;
+}
+
+.shooting-one {
+    top: 18%;
+    left: 60%;
+}
+
+.shooting-two {
+    top: 35%;
+    left: 25%;
+
+    animation-delay: 2.5s;
+}
+
+@keyframes shootingStar {
+
+    0% {
+        transform: translate(0, 0) rotate(-35deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    25% {
+        transform: translate(-300px, 180px) rotate(-35deg);
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+    }
+
+}
+
+
+/* =========================================
+   KEEP CONTENT ABOVE GALAXY
+========================================= */
+
+.birthday-page > *:not(.galaxy-background) {
+    position: relative;
+
+    z-index: 2;
+}
+
+
+/* =========================================
+   BIRTHDAY CARD → GLASS GALAXY PANEL
+========================================= */
+
+.birthday-card {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(20, 5, 45, 0.72),
+            rgba(80, 10, 70, 0.45)
+        ) !important;
+
+    border: 1px solid rgba(255, 180, 230, 0.35);
+
+    box-shadow:
+        0 0 30px rgba(180, 50, 255, 0.25),
+        inset 0 0 30px rgba(255, 100, 200, 0.05);
+
+    backdrop-filter: blur(12px);
+
+    color: white;
+}
+
+
+/* Birthday title */
+
+#birthdayTitle {
+    color: #fff;
+
+    text-shadow:
+        0 0 10px rgba(255, 150, 220, 0.9),
+        0 0 25px rgba(150, 80, 255, 0.8);
+}
+
+
+/* Poem */
+
+.birthday-poem {
+    color: #ffeaf6 !important;
+
+    text-shadow:
+        0 0 8px rgba(255, 150, 220, 0.3);
+}
+
+
+/* =========================================
+   TREE GLOW
+========================================= */
+
+.tree-area {
+    filter:
+        drop-shadow(0 0 20px rgba(255, 50, 180, 0.35));
+}
+
+.tree-glow {
+    background:
+        radial-gradient(
+            circle,
+            rgba(255, 50, 180, 0.45),
+            transparent 70%
+        ) !important;
+
+    filter: blur(15px);
+}
+
+
+/* Heart leaves */
+
+.heart-leaf {
+    filter:
+        drop-shadow(0 0 7px rgba(255, 80, 180, 0.9));
+}
+
+
+/* Main tree heart */
+
+.tree-heart {
+    filter:
+        drop-shadow(0 0 12px #ff4fa3)
+        drop-shadow(0 0 30px rgba(255, 50, 180, 0.8));
+}
+
+
+/* =========================================
+   CAKE GLOW
+========================================= */
+
+.cake-container {
+    filter:
+        drop-shadow(0 0 18px rgba(255, 120, 200, 0.5));
+}
+
+
+/* Candle flames */
+
+.flame {
+    filter:
+        drop-shadow(0 0 8px #ffd45c)
+        drop-shadow(0 0 18px #ff8c00);
+}
+
+
+/* =========================================
+   BALLOONS
+========================================= */
+
+.balloon {
+    filter:
+        drop-shadow(0 0 10px rgba(255, 100, 200, 0.55));
+}
+
+
+/* =========================================
+   MUSIC BUTTON
+========================================= */
+
+.music-button {
+    box-shadow:
+        0 0 15px rgba(255, 100, 210, 0.45);
+}
+
+
+/* =========================================
+   SURPRISE MESSAGE
+========================================= */
+
+.surprise-message {
+    background:
+        rgba(30, 5, 50, 0.75) !important;
+
+    border:
+        1px solid rgba(255, 150, 220, 0.4);
+
+    box-shadow:
+        0 0 30px rgba(200, 60, 255, 0.25);
+
+    backdrop-filter: blur(10px);
+}
+
+
+/* =========================================
+   MOBILE GALAXY
+========================================= */
+
+@media (max-width: 700px) {
+
+    .galaxy-nebula {
+        filter: blur(50px);
+    }
+
+    .birthday-page {
+        background-size: cover;
+    }
+
+    .birthday-card {
+        backdrop-filter: blur(8px);
+    }
+
+}
+/* =========================================
+   🌌 FINAL COSMIC COMPOSITION
+========================================= */
+
+/* Give the main birthday scene more breathing room */
+.birthday-page {
+    padding: 70px 5%;
+}
+
+/* Make the tree feel like the main magical object */
+.tree-area {
+    transform: scale(1.12);
+    transform-origin: center;
+    filter:
+        drop-shadow(0 0 20px rgba(255, 80, 190, 0.45))
+        drop-shadow(0 0 45px rgba(120, 50, 255, 0.25));
+}
+
+/* Stronger heart-tree glow */
+.tree-heart {
+    text-shadow:
+        0 0 8px #ff6db5,
+        0 0 20px #ff3f9d,
+        0 0 40px rgba(255, 40, 170, 0.8);
+}
+
+/* Make the birthday card look like a floating cosmic panel */
+.birthday-card {
+    border-radius: 25px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(20, 5, 45, 0.78),
+            rgba(65, 10, 70, 0.55)
+        ) !important;
+
+    border: 1px solid rgba(255, 180, 230, 0.4);
+
+    box-shadow:
+        0 0 25px rgba(190, 50, 255, 0.25),
+        0 20px 60px rgba(0, 0, 0, 0.35);
+
+    backdrop-filter: blur(14px);
+}
+
+/* Make the poem feel like glowing writing */
+.birthday-poem span {
+    text-shadow:
+        0 0 8px rgba(255, 190, 230, 0.35);
+}
+
+/* Cake gets its own little spotlight */
+.cake-container {
+    filter:
+        drop-shadow(0 0 12px rgba(255, 170, 220, 0.55))
+        drop-shadow(0 0 30px rgba(255, 80, 180, 0.25));
+}
+
+/* Balloons glow against the dark galaxy */
+.balloon {
+    filter:
+        drop-shadow(0 0 8px rgba(255, 100, 200, 0.7));
+}
+
+/* Cosmic glow underneath the scene */
+.birthday-page::after {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    bottom: -180px;
+
+    width: 900px;
+    height: 350px;
+
+    transform: translateX(-50%);
+
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(255, 40, 180, 0.28),
+            transparent 70%
+        );
+
+    filter: blur(35px);
+
+    pointer-events: none;
+
+    z-index: 1;
+}
+
+/* Keep everything above the cosmic floor glow */
+.birthday-card,
+.tree-area,
+#balloons,
+#fireworks {
+    position: relative;
+    z-index: 3;
+}
+
+
+/* =========================================
+   📱 MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+    .birthday-page {
+        padding: 50px 15px;
+    }
+
+    .tree-area {
+        transform: scale(0.95);
+    }
+
+    .birthday-card {
+        backdrop-filter: blur(10px);
+    }
+
+}

@@ -46,6 +46,17 @@ openGift.addEventListener("click", function () {
     setTimeout(function () {
         intro.style.display = "none";
     }, 1500);
+    setTimeout(function () {
+
+    for (let i = 0; i < 12; i++) {
+
+        setTimeout(function () {
+            createFirework();
+        }, i * 450);
+
+    }
+
+    }, 3500);
 
 });
 
@@ -334,3 +345,106 @@ musicButton.addEventListener("click", function () {
     }
 
 });
+// =====================================
+// PHOTO VIEWER
+// =====================================
+
+const memoryCards = document.querySelectorAll(".memory-card");
+const photoViewer = document.querySelector("#photoViewer");
+const viewerImage = document.querySelector("#viewerImage");
+const closePhoto = document.querySelector("#closePhoto");
+
+memoryCards.forEach(function (card) {
+
+    card.addEventListener("click", function () {
+
+        const image = card.querySelector("img");
+
+        viewerImage.src = image.src;
+
+        photoViewer.classList.add("active");
+
+    });
+
+});
+
+closePhoto.addEventListener("click", function () {
+
+    photoViewer.classList.remove("active");
+
+});
+
+photoViewer.addEventListener("click", function (event) {
+
+    if (event.target === photoViewer) {
+
+        photoViewer.classList.remove("active");
+
+    }
+
+});
+// =====================================
+// FIREWORKS
+// =====================================
+
+const fireworks = document.querySelector("#fireworks");
+
+function createFirework() {
+
+    const firework = document.createElement("div");
+
+    firework.classList.add("firework");
+
+    firework.style.left =
+        Math.random() * 90 + 5 + "%";
+
+    firework.style.top =
+        Math.random() * 55 + 10 + "%";
+
+    fireworks.appendChild(firework);
+
+    setTimeout(function () {
+        firework.remove();
+    }, 1500);
+}
+// =====================================
+// FLOATING HEARTS
+// =====================================
+
+const floatingHearts = document.createElement("div");
+
+floatingHearts.id = "floatingHearts";
+
+document.body.appendChild(floatingHearts);
+
+function createFloatingHeart() {
+
+    const heart = document.createElement("div");
+
+    heart.classList.add("floating-heart");
+
+    heart.textContent = "♥";
+
+    heart.style.left = Math.random() * 100 + "%";
+
+    heart.style.fontSize =
+        (14 + Math.random() * 22) + "px";
+
+    const duration =
+        5 + Math.random() * 5;
+
+    heart.style.animationDuration =
+        duration + "s";
+
+    floatingHearts.appendChild(heart);
+
+    setTimeout(function () {
+        heart.remove();
+    }, duration * 1000);
+}
+
+setInterval(function () {
+
+    createFloatingHeart();
+
+}, 700);
